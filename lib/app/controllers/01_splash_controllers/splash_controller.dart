@@ -17,16 +17,21 @@ class SplashController extends GetxController {
   }
 
   setInitialView(User? user) {
-    firestore
-        .collection('users')
-        .doc(user!.uid)
-        .get()
-        .then((DocumentSnapshot doc) {
-      if (doc.exists && doc['name'] != null && doc['uid'] != null) {
-        Get.offNamed(NameRoutes.homepageScreen);
-      } else {
-        Get.offNamed(NameRoutes.userSignup);
-      }
-    });
+    // firestore
+    //     .collection('users')
+    //     .doc(user!.uid)
+    //     .get()
+    //     .then((DocumentSnapshot doc) {
+    //   if (doc.exists) {
+    //     Get.offNamed(NameRoutes.homepageScreen);
+    //   } else {
+    //     Get.offNamed(NameRoutes.loginScreen);
+    //   }
+    // });
+    if (user != null) {
+      Get.offNamed(NameRoutes.homepageScreen);
+    } else {
+      Get.offNamed(NameRoutes.loginScreen);
+    }
   }
 }

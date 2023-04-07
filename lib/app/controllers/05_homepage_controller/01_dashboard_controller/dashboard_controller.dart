@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
 class DashboardController extends GetxController {
@@ -17,7 +18,7 @@ class DashboardController extends GetxController {
       if (doc.exists) {
         userName.value = doc['name'];
       } else {
-        print('Document does not exist on the database');
+        debugPrint('Document does not exist on the database');
       }
     });
   }
