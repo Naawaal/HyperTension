@@ -56,6 +56,18 @@ class DashBoardMiddle extends StatelessWidget {
           onTap: () {},
         ),
         const SizedBox(height: 10),
+        ContainerWidget(
+          title: 'Chart',
+          subTitle: 'View',
+          titleColor: const Color(0xffD5E50A),
+          bgColor: const Color(0xffFFFEE9),
+          subTitleColor: const Color(0xffB0E014),
+          bSubTitile: 'Report',
+          image: 'assets/report.png',
+          onTap: () {
+            Get.toNamed(NameRoutes.viewReport);
+          },
+        ),
       ],
     );
   }

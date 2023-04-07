@@ -43,6 +43,7 @@ dependencies:
   cloud_firestore: ^4.5.0
   get_storage: ^2.1.1
   date_time: ^0.8.0
+  d_chart: ^2.2.11
 
 dev_dependencies:
   flutter_test:

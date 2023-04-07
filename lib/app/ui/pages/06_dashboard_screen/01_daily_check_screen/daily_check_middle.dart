@@ -33,7 +33,7 @@ class DailyCheckMiddle extends StatelessWidget {
           color: Colors.deepPurple,
           textColor: Colors.white,
           text: 'Check',
-        )
+        ),
       ],
     );
   }
