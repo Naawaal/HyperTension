@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "996677152519",
+    "project_id": "hyper-tension-b6860",
+    "storage_bucket": "hyper-tension-b6860.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:996677152519:android:9a50ab91026dcf41f29fa2",
+        "android_client_info": {
+          "package_name": "com.example.hypertension"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "996677152519-6311c12454n1om6sgs05qjelg5saa1bk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCc-e3xCH1uf2ZchueMnhWelOKUVCuhXGo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "996677152519-6311c12454n1om6sgs05qjelg5saa1bk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
