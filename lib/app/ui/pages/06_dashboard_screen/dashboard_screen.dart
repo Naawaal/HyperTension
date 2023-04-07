@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hypertension/app/controllers/05_homepage_controller/01_dashboard_controller/dashboard_controller.dart';
 import 'package:hypertension/app/ui/pages/06_dashboard_screen/dashboard_middel.dart';
 
 class DashboardScreen extends StatelessWidget {
-  const DashboardScreen({super.key});
+  DashboardScreen({super.key});
+
+  final dashboardController = Get.find<DashboardController>();
 
   @override
   Widget build(BuildContext context) {
@@ -15,8 +18,8 @@ class DashboardScreen extends StatelessWidget {
             padding: const EdgeInsets.all(12),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
-                Text(
+              children: [
+                const Text(
                   'Welcome back ',
                   style: TextStyle(
                     fontSize: 12,
@@ -24,14 +27,21 @@ class DashboardScreen extends StatelessWidget {
                     fontWeight: FontWeight.w500,
                   ),
                 ),
-                SizedBox(height: 05),
-                Text(
-                  'John Doe',
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: Color(0xffFF0000),
-                    fontWeight: FontWeight.w500,
-                  ),
+                const SizedBox(height: 05),
+                FutureBuilder(
+                  future: dashboardController.getUserName(),
+                  builder: (context, snapshot) {
+                    return Obx(
+                      () => Text(
+                        dashboardController.userName.value,
+                        style: const TextStyle(
+                          fontSize: 16,
+                          color: Color(0xffFF0000),
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    );
+                  },
                 ),
               ],
             ),

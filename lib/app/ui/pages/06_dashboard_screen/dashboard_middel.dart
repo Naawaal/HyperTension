@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:hypertension/app/routes/names_routes.dart';
 import 'package:hypertension/app/ui/global_widgets/container_widget.dart';
 
 class DashBoardMiddle extends StatelessWidget {
@@ -16,7 +18,9 @@ class DashBoardMiddle extends StatelessWidget {
           subTitleColor: const Color(0xffFF0000),
           bSubTitile: 'Check',
           image: 'assets/hypertension.png',
-          onTap: () {},
+          onTap: () {
+            Get.toNamed(NameRoutes.dailyCheck);
+          },
         ),
         const SizedBox(height: 10),
         ContainerWidget(

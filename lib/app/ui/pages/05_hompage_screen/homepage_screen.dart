@@ -12,8 +12,8 @@ class HomepageScreen extends StatefulWidget {
 
 class _HomepageScreenState extends State<HomepageScreen> {
   final List<Widget> screensList = [
-    const DashboardScreen(),
-    const DashboardScreen(),
+    DashboardScreen(),
+    DashboardScreen(),
   ];
   final List<IconData> iconList = [
     Icons.category_rounded,

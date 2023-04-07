@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:hypertension/app/controllers/02_login_controllers/login_controller.dart';
@@ -14,6 +15,7 @@ class OtpController extends GetxController {
 
   // Firebase Instance
   final FirebaseAuth auth = FirebaseAuth.instance;
+  final FirebaseFirestore firestore = FirebaseFirestore.instance;
 
   Future<void> verifyOtp() async {
     final loginController = Get.find<LoginController>();
@@ -23,7 +25,17 @@ class OtpController extends GetxController {
     );
     try {
       await auth.signInWithCredential(credential);
-      Get.offAllNamed(NameRoutes.userSignup);
+      firestore
+          .collection('users')
+          .doc(auth.currentUser!.uid)
+          .get()
+          .then((DocumentSnapshot doc) {
+        if (doc.exists) {
+          Get.offNamed(NameRoutes.homepageScreen);
+        } else {
+          Get.offNamed(NameRoutes.userSignup);
+        }
+      });
     } catch (e) {
       Get.snackbar('Error', e.toString());
     }

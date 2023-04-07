@@ -1,9 +1,11 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:hypertension/app/routes/names_routes.dart';
 
 class SplashController extends GetxController {
   final auth = FirebaseAuth.instance;
+  final firestore = FirebaseFirestore.instance;
   late Rx<User?> _user;
 
   @override
@@ -15,10 +17,16 @@ class SplashController extends GetxController {
   }
 
   setInitialView(User? user) {
-    if (user == null) {
-      Get.offAllNamed(NameRoutes.loginScreen);
-    } else {
-      Get.offAllNamed(NameRoutes.homepageScreen);
-    }
+    firestore
+        .collection('users')
+        .doc(user!.uid)
+        .get()
+        .then((DocumentSnapshot doc) {
+      if (doc.exists && doc['name'] != null && doc['uid'] != null) {
+        Get.offNamed(NameRoutes.homepageScreen);
+      } else {
+        Get.offNamed(NameRoutes.userSignup);
+      }
+    });
   }
 }

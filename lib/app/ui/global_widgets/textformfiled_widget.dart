@@ -28,13 +28,17 @@ class TextFormFieldWidegt extends StatelessWidget {
       textInputAction: labelText == 'Name' ||
               labelText == 'Age' ||
               labelText == 'Weight' ||
-              labelText == 'Height'
+              labelText == 'Height' ||
+              hintText == 'Blood Pressure' ||
+              hintText == 'Plus Rate'
           ? TextInputAction.next
           : TextInputAction.done,
       keyboardType: hintText == 'Mobile Number' ||
               labelText == 'Age' ||
               labelText == 'Weight' ||
-              labelText == 'Height'
+              labelText == 'Height' ||
+              hintText == 'Blood Pressure' ||
+              hintText == 'Plus Rate'
           ? TextInputType.phone
           : TextInputType.text,
       decoration: InputDecoration(
