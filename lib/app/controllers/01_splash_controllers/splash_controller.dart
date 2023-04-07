@@ -1,16 +1,24 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:hypertension/app/routes/names_routes.dart';
 
 class SplashController extends GetxController {
+  final auth = FirebaseAuth.instance;
+  late Rx<User?> _user;
+
   @override
-  void onInit() {
-    showSplashScreen();
-    super.onInit();
+  void onReady() {
+    super.onReady();
+    _user = Rx<User?>(auth.currentUser);
+    _user.bindStream(auth.authStateChanges());
+    ever(_user, setInitialView);
   }
 
-  void showSplashScreen() async {
-    await Future.delayed(const Duration(seconds: 3), () {
+  setInitialView(User? user) {
+    if (user == null) {
       Get.offAllNamed(NameRoutes.loginScreen);
-    });
+    } else {
+      Get.offAllNamed(NameRoutes.homepageScreen);
+    }
   }
 }

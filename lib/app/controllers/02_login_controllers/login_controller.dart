@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:hypertension/app/routes/names_routes.dart';
 
 class LoginController extends GetxController {
@@ -9,11 +10,15 @@ class LoginController extends GetxController {
 
   RxString verificationId = ''.obs;
 
+  final box = GetStorage();
+
   // Firebase Instance
   final FirebaseAuth auth = FirebaseAuth.instance;
 
   Future<void> verifyMobileNumber() async {
     final mobileNumber = mobileNunberController.value.text.trim();
+
+    box.write('mobileNumber', mobileNumber);
 
     auth.verifyPhoneNumber(
       timeout: const Duration(seconds: 90),

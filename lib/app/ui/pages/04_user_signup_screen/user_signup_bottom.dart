@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hypertension/app/routes/names_routes.dart';
+import 'package:hypertension/app/controllers/04_user_signup_controller/user_signup_controller.dart';
 import 'package:hypertension/app/ui/global_widgets/button_widget.dart';
 
 class UserSignupBottom extends StatelessWidget {
-  const UserSignupBottom({super.key});
+  UserSignupBottom({super.key});
+
+  final userSignupController = Get.find<UserSignupController>();
 
   @override
   Widget build(BuildContext context) {
@@ -16,8 +18,8 @@ class UserSignupBottom extends StatelessWidget {
       child: ButtonWidget(
         text: 'Done',
         color: Colors.red,
-        onPressed: () {
-          Get.offAllNamed(NameRoutes.homepageScreen);
+        onPressed: () async {
+          await userSignupController.createUser();
         },
         textColor: Colors.white,
       ),

@@ -12,7 +12,7 @@ class UserSignupScreen extends StatelessWidget {
         physics: const BouncingScrollPhysics(),
         child: UserSignupTop(),
       ),
-      bottomNavigationBar: const UserSignupBottom(),
+      bottomNavigationBar: UserSignupBottom(),
     );
   }
 }

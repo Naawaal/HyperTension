@@ -25,8 +25,8 @@ class OtpBottom extends StatelessWidget {
                     ? Colors.red
                     : Colors.grey,
                 onPressed: otpController.otpLength.value.length == 6
-                    ? () {
-                        otpController.verifyOtp();
+                    ? () async {
+                        await otpController.verifyOtp();
                       }
                     : () => null,
                 textColor: Colors.white,
@@ -35,20 +35,28 @@ class OtpBottom extends StatelessWidget {
             const SizedBox(
               height: 10,
             ),
-            Obx(
-              () => InkWell(
-                onTap: () {},
-                child: Text(
-                  otpController.otpLength.value.length != 6 ? 'Resend OTP' : '',
-                  style: const TextStyle(
-                    color: Colors.red,
-                    fontSize: 14,
-                    fontWeight: FontWeight.w400,
-                    letterSpacing: 0.5,
+            Obx(() => InkWell(
+                  onTap: () async {
+                    if (otpController.resendTimer.value == 0) {
+                      await otpController.resendOtp();
+                    }
+                  },
+                  child: Text(
+                    otpController.otpLength.value.length != 6
+                        ? otpController.resendTimer.value > 0
+                            ? 'Resend OTP ${otpController.resendTimer.value} seconds'
+                            : 'Resend OTP'
+                        : '',
+                    style: TextStyle(
+                      color: otpController.resendTimer.value > 0
+                          ? Colors.grey
+                          : Colors.red,
+                      fontSize: 14,
+                      fontWeight: FontWeight.w400,
+                      letterSpacing: 0.5,
+                    ),
                   ),
-                ),
-              ),
-            ),
+                )),
           ],
         ),
       ),
