@@ -1,19 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hypertension/app/controllers/05_homepage_controller/01_dashboard_controller/05_view_report_controller/view_report_controller.dart';
-import 'package:hypertension/app/ui/pages/06_dashboard_screen/05_view_report_screen/view_report_top.dart';
+import 'package:hypertension/app/ui/pages/06_dashboard_screen/04_about_hypertension_screen/about_hypertension_middle.dart';
 
-class ViewReportScreen extends StatelessWidget {
-  ViewReportScreen({super.key});
-
-  final viewReportController = Get.put(ViewReportController());
+class AboutHyperTensionScreen extends StatelessWidget {
+  const AboutHyperTensionScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'View Report',
+          'About HyperTension',
           style: TextStyle(
             color: Colors.red,
             fontSize: 16,
@@ -30,7 +27,10 @@ class ViewReportScreen extends StatelessWidget {
           },
         ),
       ),
-      body: ViewReportTop(),
+      body: const SingleChildScrollView(
+        physics: BouncingScrollPhysics(),
+        child: AboutHyperTensionMiddle(),
+      ),
     );
   }
 }

@@ -3,7 +3,9 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:hypertension/app/controllers/02_login_controllers/login_controller.dart';
+import 'package:hypertension/app/data/models/user_signup_model.dart';
 import 'package:hypertension/app/routes/names_routes.dart';
 
 class OtpController extends GetxController {
@@ -16,6 +18,8 @@ class OtpController extends GetxController {
   // Firebase Instance
   final FirebaseAuth auth = FirebaseAuth.instance;
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
+
+  final box = GetStorage();
 
   Future<void> verifyOtp() async {
     final loginController = Get.find<LoginController>();
@@ -74,5 +78,21 @@ class OtpController extends GetxController {
       timeout: const Duration(seconds: 90),
       forceResendingToken: setResendingToken.value,
     );
+  }
+
+  // Fetch the user data from firebase
+  Future<UserSignupModel> fetchUserDataFromFirebase() async {
+    final userQuerySnapshot = await firestore
+        .collection('users')
+        .where('phone', isEqualTo: box.read('mobileNumber'))
+        .get();
+    if (userQuerySnapshot.docs.isNotEmpty) {
+      final userData = userQuerySnapshot.docs.first.data();
+      final userModel = UserSignupModel.fromJson(userData);
+      return userModel;
+    } else {
+      Get.snackbar('Error', 'User not found');
+    }
+    return UserSignupModel();
   }
 }

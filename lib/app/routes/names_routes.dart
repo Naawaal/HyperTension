@@ -6,4 +6,5 @@ class NameRoutes {
   static const String homepageScreen = '/homepage';
   static const String dailyCheck = '/dailyCheck';
   static const String viewReport = '/viewReport';
+  static const String aboutHyperTension = '/aboutHyperTension';
 }

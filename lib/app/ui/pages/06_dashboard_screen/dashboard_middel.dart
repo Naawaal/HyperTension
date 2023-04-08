@@ -53,7 +53,9 @@ class DashBoardMiddle extends StatelessWidget {
           subTitleColor: const Color(0xff0053F4),
           bSubTitile: 'Hypertension',
           image: 'assets/list.png',
-          onTap: () {},
+          onTap: () {
+            Get.toNamed(NameRoutes.aboutHyperTension);
+          },
         ),
         const SizedBox(height: 10),
         ContainerWidget(

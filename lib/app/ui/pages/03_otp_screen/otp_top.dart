@@ -52,7 +52,7 @@ class OtpTop extends StatelessWidget {
           const SizedBox(
             height: 10,
           ),
-          const OtpShowUser(),
+          OtpShowUser(),
           const SizedBox(
             height: 10,
           ),

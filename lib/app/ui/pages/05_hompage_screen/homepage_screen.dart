@@ -2,6 +2,7 @@ import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.da
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hypertension/app/ui/pages/06_dashboard_screen/dashboard_screen.dart';
+import 'package:hypertension/app/ui/pages/07_profile_screen/profile_screen.dart';
 
 class HomepageScreen extends StatefulWidget {
   const HomepageScreen({super.key});
@@ -13,7 +14,7 @@ class HomepageScreen extends StatefulWidget {
 class _HomepageScreenState extends State<HomepageScreen> {
   final List<Widget> screensList = [
     DashboardScreen(),
-    DashboardScreen(),
+    ProfileScreen(),
   ];
   final List<IconData> iconList = [
     Icons.category_rounded,
