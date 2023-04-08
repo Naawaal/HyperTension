@@ -70,6 +70,50 @@ class ProfileScreen extends StatelessWidget {
                         ),
                       ),
                       const Divider(),
+                      Text(
+                        'Gender: ${user.gender}',
+                        style: const TextStyle(
+                          color: Colors.black,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                      const Divider(),
+                      Text(
+                        'Height: ${user.height}',
+                        style: const TextStyle(
+                          color: Colors.black,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                      const Divider(),
+                      Text(
+                        'Weight: ${user.weight}',
+                        style: const TextStyle(
+                          color: Colors.black,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                      const Divider(),
+                      Text(
+                        'Occupation: ${user.occupation}',
+                        style: const TextStyle(
+                          color: Colors.black,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                      const Divider(),
+                      Text(
+                        'hasHyperTension: ${user.hasHyperTension}',
+                        style: const TextStyle(
+                          color: Colors.black,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
