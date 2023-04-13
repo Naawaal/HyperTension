@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hypertension/app/controllers/05_homepage_controller/01_dashboard_controller/05_view_report_controller/view_report_controller.dart';
+import 'package:hypertension/app/ui/pages/06_dashboard_screen/05_view_report_screen/view_report_middle.dart';
 import 'package:hypertension/app/ui/pages/06_dashboard_screen/05_view_report_screen/view_report_top.dart';
 
 class ViewReportScreen extends StatelessWidget {
@@ -30,7 +31,17 @@ class ViewReportScreen extends StatelessWidget {
           },
         ),
       ),
-      body: ViewReportTop(),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            children: [
+              ViewReportTop(),
+              const ViewReportMiddle(),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

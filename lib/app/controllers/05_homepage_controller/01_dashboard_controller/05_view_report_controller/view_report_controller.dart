@@ -23,7 +23,7 @@ class ViewReportController extends GetxController {
 //from Firestore, ordering them by date in descending order,
 //and mapping the date and bp fields to separate dateList and bpList.
 
-  Future<DailyCheckModel> fetchDailyChecks() async {
+  Future<void> fetchDailyChecks() async {
     final user = auth.currentUser;
     final uid = user!.uid;
     final dailyCheckDocs = await firestore
@@ -38,7 +38,33 @@ class ViewReportController extends GetxController {
         dailyCheckDocs.docs.map((doc) => doc['bp']).toList().cast<int>();
     prList.value =
         dailyCheckDocs.docs.map((doc) => doc['pr']).toList().cast<int>();
+  }
 
-    return DailyCheckModel();
+// Here, we're using a for loop to get data for dailyCheckModels,
+  Future<DailyCheckModel> getDailyCheck() async {
+    final user = auth.currentUser;
+    final uid = user!.uid;
+
+    final dailySnapshot = await FirebaseFirestore.instance
+        .collection('users')
+        .doc(uid)
+        .collection('dailyCheck')
+        .get();
+    if (dailySnapshot.docs.isNotEmpty) {
+      final dailyModels = <DailyCheckModel>[];
+      for (final doc in dailySnapshot.docs) {
+        final dailyCheck = doc.data();
+        final dailyModel = DailyCheckModel(
+          bp: dailyCheck['bp'],
+          pr: dailyCheck['pr'],
+          date: dailyCheck['date'],
+        );
+        print(dailyModel.bp);
+        dailyModels.add(dailyModel);
+      }
+      return dailyModels.first;
+    } else {
+      return DailyCheckModel();
+    }
   }
 }

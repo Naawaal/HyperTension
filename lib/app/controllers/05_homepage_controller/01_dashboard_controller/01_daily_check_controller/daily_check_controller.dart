@@ -71,13 +71,18 @@ class DailyCheckController extends GetxController {
       if (querySnapshot.docs.isNotEmpty) {
         Get.snackbar('Message', 'You have already submitted your daily check');
       } else {
-        await firestore
+        final dailyCheckDocRef = await firestore
             .collection('users')
             .doc(uid)
             .collection('dailyCheck')
             .add(dailyModel.toJson());
         bloodPressureController().clear();
         plusRateController().clear();
+        Get.snackbar(
+          'Message',
+          'Your daily check has been submitted',
+          snackPosition: SnackPosition.TOP,
+        );
       }
     }
   }
