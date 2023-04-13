@@ -38,4 +38,24 @@ class SplashController extends GetxController {
     //   Get.offNamed(NameRoutes.loginScreen);
     // }
   }
+
+  void onBackButtonPressed() {
+    if (currentPage.value == 2) {
+      controller.value.jumpToPage(page: 1);
+    } else {
+      controller.value.jumpToPage(page: 0);
+    }
+  }
+
+  void onNextButtonPressed() {
+    if (currentPage.value == 2) {
+      Get.offAllNamed('/login');
+    } else {
+      controller.value.jumpToPage(page: currentPage.value + 1);
+    }
+  }
+
+  void onSkipButtonPressed() {
+    controller.value.jumpToPage(page: 2);
+  }
 }

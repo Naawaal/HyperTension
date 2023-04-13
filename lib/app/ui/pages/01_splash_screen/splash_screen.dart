@@ -22,7 +22,7 @@ class SplashScreen extends StatelessWidget {
               onPageChangeCallback: (page) {
                 splashController.currentPage.value = page;
               },
-              pages: const [
+              pages: [
                 OnBoardingPage(
                   imagePath: 'stress1',
                   title: 'Welcome to HyperTesnion App',
@@ -30,7 +30,7 @@ class SplashScreen extends StatelessWidget {
                   pageNumber: '1',
                   description:
                       'Our app is designed to help you keep track of your blood pressure readings and provide you with helpful tips to manage your hypertension.',
-                  backgroundColor: Color(0xffECF2FF),
+                  backgroundColor: const Color(0xffECF2FF),
                 ),
                 OnBoardingPage(
                   imagePath: 'stress2',
@@ -39,7 +39,7 @@ class SplashScreen extends StatelessWidget {
                   pageNumber: '2',
                   description:
                       'With our easy-to-use interface, you can log your blood pressure readings and track your progress over time. This will help you and your healthcare provider make informed decisions about your health.',
-                  backgroundColor: Color(0xffE3DFFD),
+                  backgroundColor: const Color(0xffE3DFFD),
                 ),
                 OnBoardingPage(
                   imagePath: 'stress3',
@@ -48,7 +48,7 @@ class SplashScreen extends StatelessWidget {
                   pageNumber: '3',
                   description:
                       'Our app provides you with the latest information about hypertension, including tips for managing your blood pressure and strategies for living a healthy lifestyle. We want to empower you with the knowledge you need to take control of your health.',
-                  backgroundColor: Color(0xffE5D1FA),
+                  backgroundColor: const Color(0xffE5D1FA),
                 )
               ],
             ),
@@ -78,36 +78,33 @@ class SplashScreen extends StatelessWidget {
               ],
             ),
           ),
-          Positioned(
-            top: 30,
-            right: 10,
-            child: TextButton(
-              onPressed: () {
-                splashController.controller.value.jumpToPage(page: 2);
-              },
-              child: const Text(
-                'Skip',
-                style: TextStyle(
-                  color: Color(0xff3F51B5),
-                  fontSize: 14,
+          Obx(
+            () => Visibility(
+              visible: splashController.currentPage.value == 0 ? true : false,
+              child: Positioned(
+                top: 30,
+                right: 10,
+                child: TextButton(
+                  onPressed: () => splashController.onSkipButtonPressed(),
+                  child: const Text(
+                    'Skip',
+                    style: TextStyle(
+                      color: Color(0xff3F51B5),
+                      fontSize: 14,
+                    ),
+                  ),
                 ),
               ),
             ),
           ),
           Obx(
             () => Visibility(
-              visible: splashController.currentPage.value != 0,
+              visible: splashController.currentPage.value != 0 ? true : false,
               child: Positioned(
                 bottom: 20,
                 left: 20,
                 child: TextButton(
-                  onPressed: () {
-                    if (splashController.currentPage.value == 2) {
-                      splashController.controller.value.jumpToPage(page: 1);
-                    } else {
-                      splashController.controller.value.jumpToPage(page: 0);
-                    }
-                  },
+                  onPressed: () => splashController.onBackButtonPressed(),
                   child: const Text(
                     'Back',
                     style: TextStyle(
@@ -123,14 +120,7 @@ class SplashScreen extends StatelessWidget {
             bottom: 20,
             right: 20,
             child: OutlinedButton(
-              onPressed: () {
-                if (splashController.currentPage.value == 2) {
-                  Get.offAllNamed('/login');
-                } else {
-                  splashController.controller.value
-                      .jumpToPage(page: splashController.currentPage.value + 1);
-                }
-              },
+              onPressed: () => splashController.onNextButtonPressed(),
               style: OutlinedButton.styleFrom(
                 shape: const CircleBorder(),
                 side: const BorderSide(
