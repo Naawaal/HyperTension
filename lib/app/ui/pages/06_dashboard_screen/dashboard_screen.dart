@@ -13,6 +13,7 @@ class DashboardScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 70,
+        leading: null,
         flexibleSpace: SafeArea(
           child: Container(
             padding: const EdgeInsets.all(12),

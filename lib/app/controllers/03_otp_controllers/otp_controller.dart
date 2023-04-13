@@ -23,9 +23,10 @@ class OtpController extends GetxController {
 
   Future<void> verifyOtp() async {
     final loginController = Get.find<LoginController>();
+
     final PhoneAuthCredential credential = PhoneAuthProvider.credential(
       verificationId: loginController.verificationId.value,
-      smsCode: userOtp.value.trim(),
+      smsCode: userOtp.value,
     );
     try {
       await auth.signInWithCredential(credential);
@@ -34,10 +35,10 @@ class OtpController extends GetxController {
           .doc(auth.currentUser!.uid)
           .get()
           .then((DocumentSnapshot doc) {
-        if (doc.exists) {
-          Get.offNamed(NameRoutes.homepageScreen);
+        if (doc.exists && doc.data() != null) {
+          Get.offAllNamed(NameRoutes.homepageScreen);
         } else {
-          Get.offNamed(NameRoutes.userSignup);
+          Get.offAllNamed(NameRoutes.userSignup);
         }
       });
     } catch (e) {
@@ -50,15 +51,18 @@ class OtpController extends GetxController {
     await generateOtp();
     // Start the timer with 60 seconds
     resendTimer.value = 60;
-    Timer.periodic(const Duration(seconds: 1), (timer) {
-      // Decrement the timer every second
-      if (resendTimer.value > 0) {
-        resendTimer.value--;
-      } else {
-        // Stop the timer when it reaches 0
-        timer.cancel();
-      }
-    });
+    Timer.periodic(
+      const Duration(seconds: 1),
+      (timer) {
+        // Decrement the timer every second
+        if (resendTimer.value > 0) {
+          resendTimer.value--;
+        } else {
+          // Stop the timer when it reaches 0
+          timer.cancel();
+        }
+      },
+    );
   }
 
   Future<void> generateOtp() async {

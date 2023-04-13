@@ -30,10 +30,12 @@ class OtpScreen extends StatelessWidget {
           ),
         ),
       ),
-      body: Column(
-        children: [
-          OtpTop(),
-        ],
+      body: SafeArea(
+        child: Column(
+          children: [
+            OtpTop(),
+          ],
+        ),
       ),
       bottomNavigationBar: OtpBottom(),
     );

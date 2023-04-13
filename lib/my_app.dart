@@ -4,7 +4,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:hypertension/app/routes/app_routes.dart';
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

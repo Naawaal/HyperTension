@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hypertension/app/controllers/01_splash_controllers/splash_controller.dart';
+import 'package:hypertension/app/controllers/01_on_boarding_controllers/splash_controller.dart';
+
 import 'package:hypertension/app/ui/global_widgets/on_boarding_page.dart';
 import 'package:liquid_swipe/liquid_swipe.dart';
 
-class SplashScreen extends StatelessWidget {
-  SplashScreen({super.key});
+class OnBoardingScreen extends StatelessWidget {
+  OnBoardingScreen({super.key});
 
-  final splashController = Get.find<SplashController>();
+  final onBoardingController = Get.find<OnBoardingController>();
 
   @override
   Widget build(BuildContext context) {
@@ -16,11 +17,11 @@ class SplashScreen extends StatelessWidget {
         children: [
           Obx(
             () => LiquidSwipe(
-              initialPage: splashController.currentPage.value,
-              liquidController: splashController.controller.value,
+              initialPage: onBoardingController.currentPage.value,
+              liquidController: onBoardingController.controller.value,
               waveType: WaveType.liquidReveal,
               onPageChangeCallback: (page) {
-                splashController.currentPage.value = page;
+                onBoardingController.moveToNextPage(page);
               },
               pages: [
                 OnBoardingPage(
@@ -65,10 +66,11 @@ class SplashScreen extends StatelessWidget {
                     () => AnimatedContainer(
                       duration: const Duration(milliseconds: 300),
                       margin: const EdgeInsets.symmetric(horizontal: 5),
-                      width: splashController.currentPage.value == i ? 20 : 10,
+                      width:
+                          onBoardingController.currentPage.value == i ? 20 : 10,
                       height: 10,
                       decoration: BoxDecoration(
-                        color: splashController.currentPage.value == i
+                        color: onBoardingController.currentPage.value == i
                             ? const Color(0xff3F51B5)
                             : const Color(0xff3F51B5).withOpacity(0.5),
                         borderRadius: BorderRadius.circular(5),
@@ -80,12 +82,13 @@ class SplashScreen extends StatelessWidget {
           ),
           Obx(
             () => Visibility(
-              visible: splashController.currentPage.value == 0 ? true : false,
+              visible:
+                  onBoardingController.currentPage.value != 2 ? true : false,
               child: Positioned(
                 top: 30,
                 right: 10,
                 child: TextButton(
-                  onPressed: () => splashController.onSkipButtonPressed(),
+                  onPressed: () => onBoardingController.onSkipButtonPressed(),
                   child: const Text(
                     'Skip',
                     style: TextStyle(
@@ -99,12 +102,13 @@ class SplashScreen extends StatelessWidget {
           ),
           Obx(
             () => Visibility(
-              visible: splashController.currentPage.value != 0 ? true : false,
+              visible:
+                  onBoardingController.currentPage.value != 0 ? true : false,
               child: Positioned(
                 bottom: 20,
                 left: 20,
                 child: TextButton(
-                  onPressed: () => splashController.onBackButtonPressed(),
+                  onPressed: () => onBoardingController.onBackButtonPressed(),
                   child: const Text(
                     'Back',
                     style: TextStyle(
@@ -120,7 +124,7 @@ class SplashScreen extends StatelessWidget {
             bottom: 20,
             right: 20,
             child: OutlinedButton(
-              onPressed: () => splashController.onNextButtonPressed(),
+              onPressed: () => onBoardingController.onNextButtonPressed(),
               style: OutlinedButton.styleFrom(
                 shape: const CircleBorder(),
                 side: const BorderSide(

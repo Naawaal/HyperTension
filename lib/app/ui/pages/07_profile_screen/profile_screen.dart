@@ -127,8 +127,8 @@ class ProfileScreen extends StatelessWidget {
                           InkWell(
                             onTap: () async {
                               try {
-                                await FirebaseAuth.instance.signOut();
                                 Get.offAllNamed(NameRoutes.loginScreen);
+                                await FirebaseAuth.instance.signOut();
                               } catch (e) {
                                 Get.snackbar('Error', e.toString());
                               }

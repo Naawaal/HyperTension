@@ -10,5 +10,6 @@ Future<void> main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   await GetStorage.init();
+
   runApp(const MyApp());
 }

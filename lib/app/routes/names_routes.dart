@@ -1,5 +1,6 @@
 class NameRoutes {
-  static const String splashScreen = '/';
+  static const String onBoardingScreen = '/';
+  static const String splashScreen = '/splash';
   static const String loginScreen = '/login';
   static const String otpScreen = '/otp';
   static const String userSignup = '/userSignup';

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hypertension/app/controllers/01_splash_controllers/splash_controller.dart';
+import 'package:hypertension/app/controllers/01_on_boarding_controllers/splash_controller.dart';
 
 class OnBoardingPage extends StatelessWidget {
   final String imagePath;
@@ -20,7 +20,7 @@ class OnBoardingPage extends StatelessWidget {
     required this.backgroundColor,
   }) : super(key: key);
 
-  final splashController = Get.find<SplashController>();
+  final onBoardingController = Get.find<OnBoardingController>();
 
   @override
   Widget build(BuildContext context) {
@@ -37,9 +37,9 @@ class OnBoardingPage extends StatelessWidget {
               height: Get.height * 0.4,
               padding: const EdgeInsets.all(10),
               decoration: BoxDecoration(
-                color: splashController.currentPage.value == 0
+                color: onBoardingController.currentPage.value == 0
                     ? const Color(0xffECF2FF)
-                    : splashController.currentPage.value == 1
+                    : onBoardingController.currentPage.value == 1
                         ? const Color(0xffE3DFFD)
                         : const Color(0xffE5D1FA),
                 borderRadius: BorderRadius.circular(12),

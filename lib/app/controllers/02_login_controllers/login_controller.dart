@@ -18,7 +18,9 @@ class LoginController extends GetxController {
   Future<void> verifyMobileNumber() async {
     final mobileNumber = mobileNunberController.value.text.trim();
 
-    box.write('mobileNumber', mobileNumber);
+    await box.write('mobileNumber', mobileNumber);
+
+    Get.snackbar('Please Wait', 'Connecting to server');
 
     auth.verifyPhoneNumber(
       timeout: const Duration(seconds: 90),
