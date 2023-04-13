@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
-import 'package:hypertension/app/routes/names_routes.dart';
+import 'package:liquid_swipe/PageHelpers/LiquidController.dart';
 
 class SplashController extends GetxController {
   final auth = FirebaseAuth.instance;
@@ -16,6 +16,10 @@ class SplashController extends GetxController {
     ever(_user, setInitialView);
   }
 
+  var currentPage = 0.obs;
+
+  final controller = LiquidController().obs;
+
   setInitialView(User? user) {
     // firestore
     //     .collection('users')
@@ -28,10 +32,10 @@ class SplashController extends GetxController {
     //     Get.offNamed(NameRoutes.loginScreen);
     //   }
     // });
-    if (user != null) {
-      Get.offNamed(NameRoutes.homepageScreen);
-    } else {
-      Get.offNamed(NameRoutes.loginScreen);
-    }
+    // if (user != null) {
+    //   Get.offNamed(NameRoutes.homepageScreen);
+    // } else {
+    //   Get.offNamed(NameRoutes.loginScreen);
+    // }
   }
 }

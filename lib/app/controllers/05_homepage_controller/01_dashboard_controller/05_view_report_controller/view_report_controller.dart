@@ -9,6 +9,7 @@ class ViewReportController extends GetxController {
 
   RxList<String> dateList = <String>[].obs;
   RxList<int> bpList = <int>[].obs;
+  RxList<int> prList = <int>[].obs;
 
   @override
   void onInit() {
@@ -33,6 +34,8 @@ class ViewReportController extends GetxController {
     dateList.value =
         dailyCheckDocs.docs.map((doc) => doc['date']).toList().cast<String>();
     bpList.value =
+        dailyCheckDocs.docs.map((doc) => doc['bp']).toList().cast<int>();
+    prList.value =
         dailyCheckDocs.docs.map((doc) => doc['bp']).toList().cast<int>();
   }
 }

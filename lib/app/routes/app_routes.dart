@@ -20,15 +20,17 @@ class AppRoutes {
   static appRoutes() => [
         GetPage(
           name: NameRoutes.splashScreen,
-          page: () => const SplashScreen(),
+          page: () => SplashScreen(),
           binding: SplashBinding(),
           title: 'Splash Screen',
+          transition: Transition.cupertinoDialog,
         ),
         GetPage(
           name: NameRoutes.loginScreen,
           page: () => const LoginScreen(),
           title: 'login Screen',
           binding: LoginBindings(),
+          transition: Transition.leftToRightWithFade,
         ),
         GetPage(
           name: NameRoutes.otpScreen,

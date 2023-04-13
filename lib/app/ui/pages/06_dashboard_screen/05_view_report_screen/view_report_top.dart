@@ -22,12 +22,22 @@ class ViewReportTop extends StatelessWidget {
                 () => DChartBar(
                   data: [
                     {
-                      'id': 'Bar',
+                      'id': 'Systolic BP',
                       'data': List.generate(
                         viewReportController.dateList.length,
                         (index) => {
                           'domain': viewReportController.dateList[index],
                           'measure': viewReportController.bpList[index],
+                        },
+                      ),
+                    },
+                    {
+                      'id': 'Diastolic BP',
+                      'data': List.generate(
+                        viewReportController.dateList.length,
+                        (index) => {
+                          'domain': viewReportController.dateList[index],
+                          'measure': viewReportController.prList[index],
                         },
                       ),
                     },
@@ -38,11 +48,21 @@ class ViewReportTop extends StatelessWidget {
                   axisLinePointWidth: 10,
                   axisLineColor: Colors.green,
                   measureLabelPaddingToAxisLine: 10,
-                  barColor: (barData, index, id) => Colors.green,
+                  barColor: (barData, index, id) => id == 'Systolic BP'
+                      ? Colors.red
+                      : Colors.blue, // customize the bar colors
                   showBarValue: true,
                   animate: true,
+                  showDomainLine: true,
+                  showMeasureLine: true,
                   xAxisTitle: 'Date',
                   yAxisTitle: 'Blood Pressure',
+                  barValuePosition: BarValuePosition.auto,
+                  measureLabelPaddingToTick: 10,
+                  verticalDirection: true,
+                  domainLabelPaddingToTick: 10,
+                  animationDuration: 3.seconds,
+                  barValueAnchor: BarValueAnchor.end,
                 ),
               ),
             ),

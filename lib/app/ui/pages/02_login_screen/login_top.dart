@@ -70,6 +70,6 @@ class LoginTop extends StatelessWidget {
           ),
         ],
       ),
-    ).marginOnly(top: 40, left: 10, right: 10);
+    ).marginOnly(top: 45, left: 10, right: 10);
   }
 }

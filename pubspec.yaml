@@ -45,6 +45,7 @@ dependencies:
   date_time: ^0.8.0
   d_chart: ^2.2.11
   url_launcher: ^6.1.10
+  liquid_swipe: ^3.1.0
 
 dev_dependencies:
   flutter_test:

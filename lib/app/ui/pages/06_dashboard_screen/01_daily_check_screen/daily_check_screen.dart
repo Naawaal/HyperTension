@@ -10,23 +10,24 @@ class DailyCheckScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: const Text(
-            'Daily Check',
-            style: TextStyle(
-              color: Colors.red,
-              fontSize: 16,
-              fontWeight: FontWeight.w500,
-            ),
+        title: const Text(
+          'Daily Check',
+          style: TextStyle(
+            color: Colors.red,
+            fontSize: 16,
+            fontWeight: FontWeight.w500,
           ),
-          leading: IconButton(
-            icon: const Icon(
-              Icons.arrow_back,
-              color: Colors.red,
-            ),
-            onPressed: () {
-              Get.back();
-            },
-          )),
+        ),
+        leading: IconButton(
+          icon: const Icon(
+            Icons.arrow_back,
+            color: Colors.red,
+          ),
+          onPressed: () {
+            Get.back();
+          },
+        ),
+      ),
       body: DailyCheckMiddle().marginOnly(left: 10, right: 10),
       bottomNavigationBar: DailyCheckBottom(),
     );
