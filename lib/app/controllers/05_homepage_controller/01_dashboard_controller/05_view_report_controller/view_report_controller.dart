@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
+import 'package:hypertension/app/data/models/daily_check_model.dart';
 
 class ViewReportController extends GetxController {
   // Firebase Instance
@@ -22,7 +23,7 @@ class ViewReportController extends GetxController {
 //from Firestore, ordering them by date in descending order,
 //and mapping the date and bp fields to separate dateList and bpList.
 
-  Future<void> fetchDailyChecks() async {
+  Future<DailyCheckModel> fetchDailyChecks() async {
     final user = auth.currentUser;
     final uid = user!.uid;
     final dailyCheckDocs = await firestore
@@ -36,6 +37,8 @@ class ViewReportController extends GetxController {
     bpList.value =
         dailyCheckDocs.docs.map((doc) => doc['bp']).toList().cast<int>();
     prList.value =
-        dailyCheckDocs.docs.map((doc) => doc['bp']).toList().cast<int>();
+        dailyCheckDocs.docs.map((doc) => doc['pr']).toList().cast<int>();
+
+    return DailyCheckModel();
   }
 }
