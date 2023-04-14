@@ -7,14 +7,18 @@ import 'package:get_storage/get_storage.dart';
 import 'package:hypertension/app/data/models/daily_check_model.dart';
 
 class DailyCheckController extends GetxController {
+  // Text Editing Controllers
   final bloodPressureController = TextEditingController().obs;
   final plusRateController = TextEditingController().obs;
+
+// Bool to check if notification is enabled or not
+  RxBool isNotificationTrue = false.obs;
 
   // Firebase Instance
   final FirebaseAuth auth = FirebaseAuth.instance;
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
 
-  final box = GetStorage();
+  final box = GetStorage().obs;
 
   void calculateBPAndPR() {
     final bloodPressure =
@@ -28,8 +32,8 @@ class DailyCheckController extends GetxController {
         'Blood Pressure: $bp\nPlus Rate: $pr',
         snackPosition: SnackPosition.TOP,
       );
-      box.write('bp', bp);
-      box.write('pr', pr);
+      box.value.write('bp', bp);
+      box.value.write('pr', pr);
     } else {
       Get.snackbar(
         'Error',
@@ -54,11 +58,12 @@ class DailyCheckController extends GetxController {
       );
     } else {
       final dailyModel = DailyCheckModel(
-          bp: int.tryParse(box.read('bp')),
-          pr: int.tryParse(box.read('pr')),
+          bp: int.tryParse(box.value.read('bp')),
+          pr: int.tryParse(box.value.read('pr')),
           date: DateTime.now().date.toString());
 
       final user = auth.currentUser;
+
       final uid = user!.uid;
 
       final dailyCheckRef =
@@ -85,5 +90,19 @@ class DailyCheckController extends GetxController {
         );
       }
     }
+  }
+
+  @override
+  void onInit() {
+    super.onInit();
+    final bool notificationEnabled =
+        box.value.read('isNotificationEnabled') ?? false;
+    isNotificationTrue.value = notificationEnabled;
+  }
+
+  Future<void> isNotificationEnabled(bool value) async {
+    isNotificationTrue.value = value;
+    await box.value.write('isNotificationEnabled', value);
+    // update the UI
   }
 }
