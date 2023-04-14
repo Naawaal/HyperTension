@@ -25,11 +25,13 @@ class NotificationsServices {
         priority: Priority.high,
         ticker: 'ticker',
         playSound: true,
+        enableVibration: true,
+        icon: 'logo',
       ),
     );
 
     await flutterLocalNotificationsPlugin.periodicallyShow(
-      1,
+      0,
       'Daily Check',
       "It's time to sumbit your Bp and Pr",
       RepeatInterval.daily,
