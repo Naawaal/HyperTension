@@ -13,6 +13,7 @@ import 'package:hypertension/app/ui/pages/03_otp_screen/otp_screen.dart';
 import 'package:hypertension/app/ui/pages/04_user_signup_screen/user_signup_screen.dart';
 import 'package:hypertension/app/ui/pages/05_hompage_screen/homepage_screen.dart';
 import 'package:hypertension/app/ui/pages/06_dashboard_screen/01_daily_check_screen/daily_check_screen.dart';
+import 'package:hypertension/app/ui/pages/06_dashboard_screen/02_diet_plans_screen/diet_plan_screen.dart';
 import 'package:hypertension/app/ui/pages/06_dashboard_screen/04_about_hypertension_screen/about_hypertension._screen.dart';
 import 'package:hypertension/app/ui/pages/06_dashboard_screen/05_view_report_screen/view_report_screen.dart';
 import 'package:hypertension/app/ui/pages/splash_screen.dart';
@@ -75,5 +76,9 @@ class AppRoutes {
           page: () => const AboutHyperTensionScreen(),
           title: 'About Hyper Tension Screen',
         ),
+        GetPage(
+          name: NameRoutes.dietPlan,
+          page: () => const DietPlanScreen(),
+        )
       ];
 }

@@ -76,7 +76,7 @@ class DailyCheckController extends GetxController {
       if (querySnapshot.docs.isNotEmpty) {
         Get.snackbar('Message', 'You have already submitted your daily check');
       } else {
-        final dailyCheckDocRef = await firestore
+        await firestore
             .collection('users')
             .doc(uid)
             .collection('dailyCheck')

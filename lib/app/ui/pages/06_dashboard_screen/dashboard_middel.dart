@@ -31,7 +31,13 @@ class DashBoardMiddle extends StatelessWidget {
           subTitleColor: const Color(0xff00C677),
           bSubTitile: 'Plans',
           image: 'assets/diet.png',
-          onTap: () {},
+          onTap: () {
+            Get.showSnackbar(const GetSnackBar(
+              message: 'Coming Soon',
+              duration: Duration(seconds: 2),
+              snackPosition: SnackPosition.BOTTOM,
+            ));
+          },
         ),
         const SizedBox(height: 10),
         ContainerWidget(
@@ -42,7 +48,13 @@ class DashBoardMiddle extends StatelessWidget {
           subTitleColor: const Color(0xff7200F4),
           bSubTitile: 'Assignments',
           image: 'assets/assignment.png',
-          onTap: () {},
+          onTap: () {
+            Get.showSnackbar(const GetSnackBar(
+              message: 'Coming Soon',
+              duration: Duration(seconds: 2),
+              snackPosition: SnackPosition.BOTTOM,
+            ));
+          },
         ),
         const SizedBox(height: 10),
         ContainerWidget(

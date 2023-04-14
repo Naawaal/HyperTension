@@ -32,7 +32,7 @@ class NotificationsServices {
       1,
       'Daily Check',
       "It's time to sumbit your Bp and Pr",
-      RepeatInterval.daily,
+      RepeatInterval.everyMinute,
       notificationDetails,
     );
   }

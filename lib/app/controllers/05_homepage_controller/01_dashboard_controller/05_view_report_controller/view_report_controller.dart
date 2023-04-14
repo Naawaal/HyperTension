@@ -59,7 +59,7 @@ class ViewReportController extends GetxController {
           pr: dailyCheck['pr'],
           date: dailyCheck['date'],
         );
-        print(dailyModel.bp);
+
         dailyModels.add(dailyModel);
       }
       return dailyModels.first;

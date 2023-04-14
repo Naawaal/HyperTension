@@ -58,25 +58,47 @@ class _DailyCheckScreenState extends State<DailyCheckScreen> {
                 onPressed: () async {
                   await Get.defaultDialog(
                     title: 'Notification',
-                    content: const Text('Do you want to enable notification ?'),
+                    content: Text(
+                        dailyCheckController.isNotificationTrue.value == false
+                            ? 'Do you want to enable notification ?'
+                            : 'Do you want to disable notification ?'),
                     barrierDismissible: false,
                     radius: 14,
                     actions: [
                       TextButton(
-                        onPressed: () {
-                          dailyCheckController.isNotificationEnabled(false);
-                          notificationServices.cancelNotification();
-                          Get.back();
-                        },
+                        onPressed:
+                            dailyCheckController.isNotificationTrue.value ==
+                                    false
+                                ? () async {
+                                    dailyCheckController
+                                        .isNotificationEnabled(false);
+                                    notificationServices.cancelNotification();
+                                    Get.back();
+                                  }
+                                : () async {
+                                    dailyCheckController
+                                        .isNotificationEnabled(true);
+                                    notificationServices.scheduleNotification();
+                                    Get.back();
+                                  },
                         child: const Text('No'),
                       ),
                       TextButton(
-                        onPressed: () async {
-                          await dailyCheckController
-                              .isNotificationEnabled(true);
-                          notificationServices.scheduleNotification();
-                          Get.back();
-                        },
+                        onPressed:
+                            dailyCheckController.isNotificationTrue.value ==
+                                    false
+                                ? () async {
+                                    dailyCheckController
+                                        .isNotificationEnabled(true);
+                                    notificationServices.scheduleNotification();
+                                    Get.back();
+                                  }
+                                : () async {
+                                    dailyCheckController
+                                        .isNotificationEnabled(false);
+                                    notificationServices.cancelNotification();
+                                    Get.back();
+                                  },
                         child: const Text('Yes'),
                       ),
                     ],
