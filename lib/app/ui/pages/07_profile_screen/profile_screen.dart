@@ -25,132 +25,134 @@ class ProfileScreen extends StatelessWidget {
           ),
         ),
       ),
-      body: Column(
-        children: [
-          Container(
-            padding: const EdgeInsets.all(12),
-            width: Get.width,
-            decoration: BoxDecoration(
-              color: Colors.grey.shade200,
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: FutureBuilder<UserSignupModel>(
-              future: profileController.fetchUserDataFromFirebase(),
-              builder: (context, AsyncSnapshot<UserSignupModel> snapshot) {
-                final user = snapshot.data;
-                if (user == null) {
-                  return const Center(child: CircularProgressIndicator());
-                } else {
-                  return Column(
-                    children: [
-                      Text(
-                        'Name: ${user.name}',
-                        style: const TextStyle(
-                          color: Colors.black,
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                      const Divider(),
-                      Text(
-                        'Age: ${user.age}',
-                        style: const TextStyle(
-                          color: Colors.black,
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                      const Divider(),
-                      Text(
-                        'Mobile Number: ${user.phone}',
-                        style: const TextStyle(
-                          color: Colors.black,
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                      const Divider(),
-                      Text(
-                        'Gender: ${user.gender}',
-                        style: const TextStyle(
-                          color: Colors.black,
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                      const Divider(),
-                      Text(
-                        'Height: ${user.height}',
-                        style: const TextStyle(
-                          color: Colors.black,
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                      const Divider(),
-                      Text(
-                        'Weight: ${user.weight}',
-                        style: const TextStyle(
-                          color: Colors.black,
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                      const Divider(),
-                      Text(
-                        'Occupation: ${user.occupation}',
-                        style: const TextStyle(
-                          color: Colors.black,
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                      const Divider(),
-                      Text(
-                        'hasHyperTension: ${user.hasHyperTension}',
-                        style: const TextStyle(
-                          color: Colors.black,
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          IconButton(
-                            onPressed: () {},
-                            icon: const Icon(
-                              Icons.logout_rounded,
-                              color: Colors.grey,
-                            ),
+      body: Center(
+        child: Column(
+          children: [
+            Container(
+              padding: const EdgeInsets.all(12),
+              width: Get.width,
+              decoration: BoxDecoration(
+                color: Colors.grey.shade200,
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: FutureBuilder<UserSignupModel>(
+                future: profileController.fetchUserDataFromFirebase(),
+                builder: (context, AsyncSnapshot<UserSignupModel> snapshot) {
+                  final user = snapshot.data;
+                  if (user == null) {
+                    return const Center(child: CircularProgressIndicator());
+                  } else {
+                    return Column(
+                      children: [
+                        Text(
+                          'Name: ${user.name}',
+                          style: const TextStyle(
+                            color: Colors.black,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500,
                           ),
-                          InkWell(
-                            onTap: () async {
-                              try {
-                                Get.offAllNamed(NameRoutes.loginScreen);
-                                await FirebaseAuth.instance.signOut();
-                              } catch (e) {
-                                Get.snackbar('Error', e.toString());
-                              }
-                            },
-                            child: const Text(
-                              'Logout ?',
-                              style: TextStyle(
-                                color: Colors.red,
-                                fontSize: 16,
-                                fontWeight: FontWeight.w500,
+                        ),
+                        const Divider(),
+                        Text(
+                          'Age: ${user.age}',
+                          style: const TextStyle(
+                            color: Colors.black,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                        const Divider(),
+                        Text(
+                          'Mobile Number: ${user.phone}',
+                          style: const TextStyle(
+                            color: Colors.black,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                        const Divider(),
+                        Text(
+                          'Gender: ${user.gender}',
+                          style: const TextStyle(
+                            color: Colors.black,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                        const Divider(),
+                        Text(
+                          'Height: ${user.height}',
+                          style: const TextStyle(
+                            color: Colors.black,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                        const Divider(),
+                        Text(
+                          'Weight: ${user.weight}',
+                          style: const TextStyle(
+                            color: Colors.black,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                        const Divider(),
+                        Text(
+                          'Occupation: ${user.occupation}',
+                          style: const TextStyle(
+                            color: Colors.black,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                        const Divider(),
+                        Text(
+                          'hasHyperTension: ${user.hasHyperTension}',
+                          style: const TextStyle(
+                            color: Colors.black,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            IconButton(
+                              onPressed: () {},
+                              icon: const Icon(
+                                Icons.logout_rounded,
+                                color: Colors.grey,
                               ),
                             ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  );
-                }
-              },
-            ),
-          ).marginOnly(left: 10, right: 10, top: 5),
-        ],
+                            InkWell(
+                              onTap: () async {
+                                try {
+                                  Get.offAllNamed(NameRoutes.loginScreen);
+                                  await FirebaseAuth.instance.signOut();
+                                } catch (e) {
+                                  Get.snackbar('Error', e.toString());
+                                }
+                              },
+                              child: const Text(
+                                'Logout ?',
+                                style: TextStyle(
+                                  color: Colors.red,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    );
+                  }
+                },
+              ),
+            ).marginOnly(left: 10, right: 10, top: 5),
+          ],
+        ),
       ),
     );
   }
