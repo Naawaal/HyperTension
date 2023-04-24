@@ -35,7 +35,7 @@ class LoginController extends GetxController {
         Get.toNamed(NameRoutes.otpScreen);
       },
       codeAutoRetrievalTimeout: (verificationId) {},
-      phoneNumber: "+977$mobileNumber",
+      phoneNumber: "+91$mobileNumber",
     );
   }
 }
