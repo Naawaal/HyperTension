@@ -41,6 +41,9 @@ class ViewReportController extends GetxController {
   }
 
 // Here, we're using a for loop to get data for dailyCheckModels,
+// and then we're returning the first dailyCheckModel.
+// If the dailyCheckSnapshot is empty, we're returning an empty dailyCheckModel.
+// we are not using this function
   Future<DailyCheckModel> getDailyCheck() async {
     final user = auth.currentUser;
     final uid = user!.uid;
@@ -59,7 +62,6 @@ class ViewReportController extends GetxController {
           pr: dailyCheck['pr'],
           date: dailyCheck['date'],
         );
-
         dailyModels.add(dailyModel);
       }
       return dailyModels.first;
